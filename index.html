@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Decode the Message</title>
+    <style>
+        body {
+            background-color: #020617;
+            color: #e5e7eb;
+            font-family: monospace;
+            padding: 40px;
+        }
+        button {
+            background-color: #38bdf8;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #decoded {
+            margin-top: 30px;
+            white-space: pre-line;
+            display: none;
+            border: 1px dashed #38bdf8;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>🔐 Encoded Message</h2>
+
+<p id="encoded">
+SGVsbG8gSnVsaWEhIEkganVzdCB3YW50IHRvIHdpc2ggeW91IGEg
+aGFwcHkgbmV3IHllYXIgb2YgMjAyNiDwn46JLiAKSSBwcmF5IHRo
+YXQgeW91IHdpbGwgc2VlIExvcmQncyBibGVzc2luZ3MgYW5kIGVu
+ZGxlc3MgbWVyY3kgaW4gdGhpcyB5ZWFyLgotLS0KTWF5IHBsYW5u
+aW5nIGFuZCBleGVjdXRpbmcgYmUgYnkgeW91ciBzaWRlIHRoaXMg
+eWVhci4KSSB1cmdlIHlvdSBub3QgdG8gYmUgYWZyYWlkIG9mIHNl
+dGJhY2tzIGJ1dCBsZWFybiBmcm9tIHRoZW0uClRocm91Z2ggcHJh
+eWluZyBhbmQgaGFyZHdvcmtpbmcsIEkgaG9wZSB5b3Ugd2lsbCBi
+ZSBzdWNjZXNzZnVsLgoKSGFwcHkgbmV3IHllYXIgb25jZSBhZ2Fp
+bi4=
+</p>
+
+<button onclick="decode()">Decode Message</button>
+
+<div id="decoded"></div>
+
+<script>
+function decode() {
+    const encodedText = document.getElementById("encoded").innerText.replace(/\s/g, "");
+    const decodedText = atob(encodedText);
+    document.getElementById("decoded").innerText = decodedText;
+    document.getElementById("decoded").style.display = "block";
+}
+</script>
+
+</body>
+</html>
