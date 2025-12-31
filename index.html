@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Decode the Message</title>
+    <title>Secure Decoder</title>
     <style>
         body {
             background-color: #020617;
@@ -9,13 +9,18 @@
             font-family: monospace;
             padding: 40px;
         }
+        input {
+            padding: 8px;
+            font-family: monospace;
+            margin-top: 10px;
+        }
         button {
             background-color: #38bdf8;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         #decoded {
             margin-top: 30px;
@@ -24,11 +29,20 @@
             border: 1px dashed #38bdf8;
             padding: 20px;
         }
+        #error {
+            color: #f87171;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
-<h2>🔐 Encoded Message</h2>
+<h2>🔐 Secure Message Decoder</h2>
+
+<p>
+Encoded payload detected.<br>
+Authorization required.
+</p>
 
 <p id="encoded">
 SGVsbG8gSnVsaWEhIEkganVzdCB3YW50IHRvIHdpc2ggeW91IGEg
@@ -43,14 +57,32 @@ ZSBzdWNjZXNzZnVsLgoKSGFwcHkgbmV3IHllYXIgb25jZSBhZ2Fp
 bi4=
 </p>
 
-<button onclick="decode()">Decode Message</button>
+<br>
+
+<label>Enter password:</label><br>
+<input type="password" id="password" placeholder="********"><br>
+
+<button onclick="decode()">run_decoder()</button>
+
+<p id="error"></p>
 
 <div id="decoded"></div>
 
 <script>
 function decode() {
+    const correctPassword = "fiston108";
+    const userPassword = document.getElementById("password").value;
+
+    if (userPassword !== correctPassword) {
+        document.getElementById("error").innerText = "Access denied: invalid password.";
+        return;
+    }
+
+    document.getElementById("error").innerText = "";
+
     const encodedText = document.getElementById("encoded").innerText.replace(/\s/g, "");
     const decodedText = atob(encodedText);
+
     document.getElementById("decoded").innerText = decodedText;
     document.getElementById("decoded").style.display = "block";
 }
